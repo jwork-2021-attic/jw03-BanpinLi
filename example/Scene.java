@@ -2,7 +2,6 @@ package example;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
 
 import example.classloader.SteganographyClassLoader;
@@ -22,10 +21,26 @@ public class Scene {
 
         Geezer theGeezer = Geezer.getTheGeezer();
 
-        SteganographyClassLoader loader = new SteganographyClassLoader(
-                new URL("https://cdn.njuics.cn/example.BubbleSorter.png"));
+        SteganographyClassLoader loader;
+        Class c;
 
-        Class c = loader.loadClass("example.BubbleSorter");
+        // 载入测试用图片
+        // loader = new SteganographyClassLoader(new
+        // URL("file:example.BubbleSorter.png"));
+        // c = loader.loadClass("example.BubbleSorter");
+
+        // 载入编码了快速排序的图片
+        // loader = new SteganographyClassLoader(new URL("file:example.QuickSort.png"));
+        // c = loader.loadClass("example.QuickSort");
+
+        // 载入编码了选择排序的图片
+        loader = new SteganographyClassLoader(new URL("file:example.SelectSort.png"));
+        c = loader.loadClass("example.SelectSort");
+
+        // 载入其他同学生成的图片
+        // loader = new SteganographyClassLoader(new
+        // URL("file:example.ShellSorter.png"));
+        // c = loader.loadClass("example.ShellSorter");
 
         Sorter sorter = (Sorter) c.newInstance();
 
